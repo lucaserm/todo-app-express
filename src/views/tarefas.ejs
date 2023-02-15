@@ -1,0 +1,28 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Tarefas</h1>
+      <p class="text-center lead">Crie ou edite suas tarefas abaixo.</p>
+
+      <%- include('includes/messages') %>
+
+      <form action="/tarefa/register" method="POST">
+        <div class="form-group">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <label class="row justify-content-center">Nome da Tarefa: </label>
+          <input value="<%= tarefa.nome %>" type="text" class="form-control" name="nome">
+          <br>
+          <button type="submit" class="btn btn-dark" style="width: 100%">Salvar</button>
+        </div>
+      </form>
+    </div>    
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

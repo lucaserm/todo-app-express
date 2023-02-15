@@ -1,0 +1,35 @@
+<%- include('./includes/head') %>
+<%- include('./includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8 my-3">
+      <h1 class="text-center">Tarefas</h1>
+      <p class="text-center lead">Suas coisas para fazer estão abaixo</p>
+
+      <%- include('includes/messages') %>
+
+      <% if(todo.rows.length > 0) {%>
+      <div class="responsive-table">
+        <table class="table my-3 border">
+          <% todo.rows.forEach(tarefa => { %>
+          <tr>
+            <td class="border"><%= tarefa.obj %></td>
+            <td class="border"><a href="#">Editar</a></td>
+            <td class="border"><a class="text-danger" href="/tarefa/delete/<%= tarefa.id%>">Excluir</a></td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+      <% } else { %>
+        <p class="text-center lead alert alert-success">Não existem tarefas na sua agenda.</p>
+      <% } %>
+  
+    </div>
+    
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+<%- include('./includes/footer') %>
