@@ -1,6 +1,9 @@
-const Todo = require('../models/ToDoModel');
+import { Task } from "../models/task.js";
 
-exports.index = async(req, res) => {
-  const todo = await Todo.buscaTarefas();
-  res.render('index', { todo });
-};
+export default class HomeController {
+  async index(req, res) {
+    const todo = new Task();
+    const tarefas = await todo.buscaTarefas();
+    res.render("index", { todo: tarefas });
+  }
+}

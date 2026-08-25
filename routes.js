@@ -1,15 +1,16 @@
-const express = require('express');
-const route = express.Router();
+import express from "express";
 
-const homeController = require('./src/controllers/homeController');
-const tarefasController = require('./src/controllers/tarefasController');
+import TarefasController from "./src/controllers/tarefasController.js";
+import HomeController from "./src/controllers/homeController.js";
+
+export const route = express.Router();
 
 // Rota da Home
-route.get('/', homeController.index);
+const homeController = new HomeController();
+route.get("/", homeController.index);
 
 // Rota de manipulação das tarefas
-route.get('/tarefa/index', tarefasController.index);
-route.post('/tarefa/register', tarefasController.register);
-route.get('/tarefa/delete/:id', tarefasController.delete);
-
-module.exports = route;
+const tarefasController = new TarefasController();
+route.get("/tarefa/index", tarefasController.index);
+route.post("/tarefa/register", tarefasController.register);
+route.get("/tarefa/delete/:id", tarefasController.delete);

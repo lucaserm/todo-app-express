@@ -1,11 +1,11 @@
-exports.middlewareGlobal = (req, res, next) => {
+export const middlewareGlobal = (req, res, next) => {
   res.locals.errors = req.flash('errors');
   res.locals.success = req.flash('success');
   res.locals.user = req.session.user;
   next();
 };
 
-exports.checkCsrfError = (err, req, res, next) => {
+export const checkCsrfError = (err, _req, res, next) => {
   if(err) {
     return res.render('404');
   }

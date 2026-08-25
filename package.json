@@ -5,17 +5,27 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "db:migrate": "npx drizzle-kit migrate"
   },
   "author": "L",
   "license": "ISC",
   "dependencies": {
     "connect-flash": "^0.1.1",
     "csurf": "^1.11.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^1.0.0-rc.4",
     "ejs": "^3.1.7",
     "express": "^4.17.3",
     "express-session": "^1.17.2",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.3"
-  }
+    "pg": "^8.23.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "^1.0.0-rc.4",
+    "tsx": "^4.23.12"
+  },
+  "type": "module"
 }

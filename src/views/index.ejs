@@ -16,7 +16,7 @@
         <table class="table my-3 border">
           <% todo.rows.forEach(tarefa => { %>
           <tr>
-            <td class="border"><%= tarefa.obj %></td>
+            <td class="border"><%= tarefa.name %></td>
             <td class="border"><a href="#">Editar</a></td>
             <td class="border"><a class="text-danger" href="/tarefa/delete/<%= tarefa.id%>">Excluir</a></td>
           </tr>
@@ -26,9 +26,9 @@
       <% } else { %>
         <p class="text-center lead alert alert-success">Não existem tarefas na sua agenda.</p>
       <% } %>
-  
+
     </div>
-    
+
     <div class="col-lg-2"></div>
   </div>
 </div>

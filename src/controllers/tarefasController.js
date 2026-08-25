@@ -1,33 +1,36 @@
-const Todo = require('../models/ToDoModel');
-const Tarefa = require('../models/ToDoModel');
+import { Task } from "../models/task.js";
 
-exports.index = (req, res) => {
-  res.render('tarefas', {
-    tarefa: {},
-    csrfToken: req.csrfToken()
-  });
-};
-
-exports.register = async(req, res) => {
-  try {
-    const tarefa = new Tarefa(req.body);
-    await tarefa.register();
-
-    req.flash('success', 'Tarefa registrada com sucesso.');
-    req.session.save(() => res.redirect(`/tarefa/index`));
-    return;
-  } catch (e) {
-    console.log(e);
-    return res.render('404');
+export default class TarefasController {
+  index(req, res) {
+    res.render("tarefas", {
+      tarefa: {},
+      csrfToken: req.csrfToken(),
+    });
   }
-}
 
-exports.delete = async function(req, res){
-  if(!req.params.id) return res.render('404');
-  const tarefa = await Todo.delete(req.params.id);
-  if(!tarefa) return res.render('404');
+  async register(req, res) {
+    try {
+      const tarefa = new Task(req.body);
+      await tarefa.register();
 
-  req.flash('success', 'Tarefa apagada com sucesso.');
-  req.session.save(() => res.redirect('back'));
-  return;
+      req.flash("success", "Tarefa registrada com sucesso.");
+      req.session.save(() => res.redirect(`/tarefa/index`));
+      return;
+    } catch (e) {
+      console.log(e);
+      return res.render("404");
+    }
+  }
+
+  async delete(req, res) {
+    console.log(req.params.id)
+    if (!req.params.id) return res.render("404");
+    const todo = new Task();
+    const tarefa = await todo.delete(req.params.id);
+    if (!tarefa) return res.render("404");
+
+    req.flash("success", "Tarefa apagada com sucesso.");
+    req.session.save(() => res.redirect("back"));
+    return;
+  }
 }
